@@ -11,7 +11,7 @@ export class UserRepository implements IUserRepository {
   constructor(
     @InjectRepository(UserModel)
     private repo: Repository<UserModel>,
-  ) {}
+  ) { }
 
   async save(user: User): Promise<User> {
     const model = UserMapper.toModel(user);
@@ -23,4 +23,11 @@ export class UserRepository implements IUserRepository {
     const model = await this.repo.findOne({ where: { username } });
     return model ? UserMapper.toDomain(model) : null;
   }
+
+
+  async findAll(): Promise<User[]> {
+    const models = await this.repo.find();
+    return models.map(model => UserMapper.toDomain(model));
+  }
+
 }

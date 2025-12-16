@@ -4,6 +4,7 @@ import { UserModel } from './infrastructure/persistence/user.model';
 import { UserRepository } from './infrastructure/persistence/user.repository';
 import { CreateUserUseCase } from './application/use-cases/create-user.use-case';
 import { UserController } from './infrastructure/http/controller/users.controller';
+import { ListUsersUseCase } from './application/use-cases/list-user.use-case';
 
 
 const REPOSITORY = 'IUserRepository';
@@ -13,7 +14,8 @@ const REPOSITORY = 'IUserRepository';
   controllers: [UserController],
   providers: [
     { provide: REPOSITORY, useClass: UserRepository },
-    CreateUserUseCase
+    CreateUserUseCase,
+    ListUsersUseCase
   ],
   exports: [REPOSITORY],
 })

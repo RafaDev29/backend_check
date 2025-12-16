@@ -5,6 +5,7 @@ import { appConfig, databaseConfig, validate } from './config';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { RecordModule } from './modules/record/record.module';
+import { TrackingModule } from './modules/tracking/tracking.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { RecordModule } from './modules/record/record.module';
     cache: true,
   }),
   DatabaseModule,
-  AuthModule, UsersModule, RecordModule],
+  AuthModule, UsersModule, RecordModule, TrackingModule],
   controllers: [],
   providers: [],
 })
