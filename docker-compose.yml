@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: backend_apm_write
+    container_name: backend_check
     build: .
     ports:
       - "5700:5700"
