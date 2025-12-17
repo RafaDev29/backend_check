@@ -1,4 +1,4 @@
-// src/modules/records/services/record.service.ts
+
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, MoreThanOrEqual, LessThan } from 'typeorm';
@@ -152,7 +152,7 @@ private getTodayRange(): { startOfDay: Date; endOfDay: Date } {
     if (updateRecordDto.status && updateRecordDto.status !== record.status) {
       const hasRecord = await this.hasRecordToday(record.userId, updateRecordDto.status);
       if (hasRecord) {
-        const statusText = updateRecordDto.status === RecordStatus.INIT ? 'entrada (init)' : 'salida (finish)';
+        const statusText = updateRecordDto.status === RecordStatus.INIT ? 'entrada' : 'salida';
         throw new BadRequestException(
           `El usuario ya tiene un registro de ${statusText} el día de hoy`
         );
