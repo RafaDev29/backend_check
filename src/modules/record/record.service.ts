@@ -79,7 +79,7 @@ private getTodayRange(): { startOfDay: Date; endOfDay: Date } {
     const hasRecord = await this.hasRecordToday(userId, status);
 
     if (hasRecord) {
-      const statusText = status === RecordStatus.INIT ? 'entrada (init)' : 'salida (finish)';
+      const statusText = status === RecordStatus.INIT ? 'entrada ' : 'salida ';
       throw new BadRequestException(
         `El usuario ya tiene un registro de ${statusText} el día de hoy`
       );
@@ -89,7 +89,7 @@ private getTodayRange(): { startOfDay: Date; endOfDay: Date } {
       const hasInit = await this.hasRecordToday(userId, RecordStatus.INIT);
       if (!hasInit) {
         throw new BadRequestException(
-          'No se puede registrar una salida (finish) sin una entrada (init) previa el día de hoy'
+          'No se puede registrar una salida  sin una entrada  previa el día de hoy'
         );
       }
     }
