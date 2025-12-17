@@ -37,7 +37,7 @@ async findByDate(query: QueryTrackingDto) {
 
   const recordsAdjusted = records.map(r => {
     const adjusted = new Date(r.createdAt);
-    adjusted.setHours(adjusted.getHours() - 10);
+    adjusted.setHours(adjusted.getHours() - 5);
 
     return {
       status: r.status,
@@ -86,7 +86,7 @@ async findByDate(query: QueryTrackingDto) {
   const trackingInRange = trackings
     .map(t => {
       const adjusted = new Date(t.createdAt);
-      adjusted.setHours(adjusted.getHours() - 10);
+      adjusted.setHours(adjusted.getHours() - 5);
 
       return {
         ...t,
