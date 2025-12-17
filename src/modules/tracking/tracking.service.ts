@@ -42,7 +42,7 @@ async findByDate(query: QueryTrackingDto) {
     return {
       status: r.status,
       adjusted,
-      logicalDate: adjusted.toISOString().slice(0, 15),
+      logicalDate: adjusted.toISOString().slice(0, 10),
     };
   });
 
@@ -86,7 +86,7 @@ async findByDate(query: QueryTrackingDto) {
   const trackingInRange = trackings
     .map(t => {
       const adjusted = new Date(t.createdAt);
-      adjusted.setHours(adjusted.getHours() - 15);
+      adjusted.setHours(adjusted.getHours() - 5);
 
       return {
         ...t,
