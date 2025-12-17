@@ -16,17 +16,30 @@ export class RecordService {
   ) {}
 
  
-  private getTodayRange(): { startOfDay: Date; endOfDay: Date } {
-    const now = new Date();
-    
-    const startOfDay = new Date(now);
-    startOfDay.setHours(0, 0, 0, 0);
-    
-    const endOfDay = new Date(now);
-    endOfDay.setHours(23, 59, 59, 999);
-    
-    return { startOfDay, endOfDay };
-  }
+private getTodayRange(): { startOfDay: Date; endOfDay: Date } {
+  const nowUtc = new Date();
+
+  // Offset Perú: UTC-5
+  const offsetMs = 5 * 60 * 60 * 1000;
+
+  // Convertimos "ahora" a hora Perú
+  const peruNow = new Date(nowUtc.getTime() - offsetMs);
+
+  // Inicio del día en hora Perú
+  const startOfDayPeru = new Date(peruNow);
+  startOfDayPeru.setHours(0, 0, 0, 0);
+
+
+  const endOfDayPeru = new Date(peruNow);
+  endOfDayPeru.setHours(23, 59, 59, 999);
+
+
+  return {
+    startOfDay: new Date(startOfDayPeru.getTime() + offsetMs),
+    endOfDay: new Date(endOfDayPeru.getTime() + offsetMs),
+  };
+}
+
 
 
   private async hasRecordToday(userId: string, status: RecordStatus): Promise<boolean> {
